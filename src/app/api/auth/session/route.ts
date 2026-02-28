@@ -1,69 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { prisma } from '@/lib/prisma';
-import { seedDemoData } from '@/lib/seed-demo';
 import { OAuth2Client } from 'google-auth-library';
 
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 const SESSION_COOKIE = '__session';
 const LEGACY_COOKIE = 'sustainance_company_id';
-const DEMO_COMPANY_ID = 'demo_test_inc';
 
 const client = GOOGLE_CLIENT_ID ? new OAuth2Client(GOOGLE_CLIENT_ID) : null;
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
-  // Demo mode — auto-create user, company, membership, and seed data
+  // Demo mode — look up pre-seeded demo user and company (read-only for serverless)
   if (body.demo) {
-    let user = await prisma.user.findUnique({ where: { email: 'demo@sustainance.app' } });
+    const user = await prisma.user.findUnique({ where: { email: 'demo@sustainance.app' } });
     if (!user) {
-      user = await prisma.user.create({
-        data: { email: 'demo@sustainance.app', name: 'Demo User' },
-      });
+      return NextResponse.json({ error: 'Demo user not found. Database may need re-seeding.' }, { status: 500 });
     }
 
-    // Check for existing membership
-    let membership = await prisma.companyMember.findFirst({
+    const membership = await prisma.companyMember.findFirst({
       where: { userId: user.id },
       include: { company: true },
       orderBy: { joinedAt: 'desc' },
     });
 
-    // If no membership, create "TEST INCORPORATED" company + membership + seed
     if (!membership) {
-      // Create or find the demo company
-      let company = await prisma.company.findUnique({ where: { id: DEMO_COMPANY_ID } });
-      if (!company) {
-        company = await prisma.company.create({
-          data: {
-            id: DEMO_COMPANY_ID,
-            name: 'TEST INCORPORATED',
-            industry: 'Technology',
-            size: 'medium',
-            state: 'California',
-            userId: user.id,
-          },
-        });
-      }
-
-      // Create membership
-      membership = await prisma.companyMember.create({
-        data: {
-          userId: user.id,
-          companyId: company.id,
-          role: 'Manager',
-        },
-        include: { company: true },
-      });
-
-      // Auto-seed demo data
-      try {
-        await seedDemoData(company.id, user.id);
-      } catch (e) {
-        console.error('Auto-seed failed:', e);
-        // Non-fatal — user can still use the app
-      }
+      return NextResponse.json({ error: 'Demo company not found. Database may need re-seeding.' }, { status: 500 });
     }
 
     const cookieStore = await cookies();

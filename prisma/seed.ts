@@ -111,6 +111,52 @@ async function main() {
   });
   console.log(`  ✓ Demo user: ${demoUser.email}`);
 
+  // 6c. Sustainance Demo User + Company + Membership (pre-seeded for read-only runtime)
+  const sustainanceDemoUser = await prisma.user.upsert({
+    where: { email: 'demo@sustainance.app' },
+    update: { name: 'Demo User' },
+    create: { id: 'demo_user_sustainance', email: 'demo@sustainance.app', name: 'Demo User' },
+  });
+
+  const DEMO_COMPANY_ID = 'demo_test_inc';
+  let demoCompany = await prisma.company.findUnique({ where: { id: DEMO_COMPANY_ID } });
+  if (!demoCompany) {
+    demoCompany = await prisma.company.create({
+      data: {
+        id: DEMO_COMPANY_ID,
+        name: 'TEST INCORPORATED',
+        industry: 'Technology',
+        size: 'medium',
+        state: 'California',
+        userId: sustainanceDemoUser.id,
+      },
+    });
+  }
+
+  // Create membership for sustainance demo user
+  const existingMembership = await prisma.companyMember.findFirst({
+    where: { userId: sustainanceDemoUser.id, companyId: DEMO_COMPANY_ID },
+  });
+  if (!existingMembership) {
+    await prisma.companyMember.create({
+      data: {
+        userId: sustainanceDemoUser.id,
+        companyId: DEMO_COMPANY_ID,
+        role: 'Manager',
+      },
+    });
+  }
+
+  // Seed demo data for TEST INCORPORATED
+  const { seedDemoData } = await import('../src/lib/seed-demo');
+  try {
+    const result = await seedDemoData(DEMO_COMPANY_ID, sustainanceDemoUser.id);
+    console.log(`  ✓ Sustainance demo: ${result.departments} depts, ${result.employees} employees, ${result.roleAssessments} assessments`);
+  } catch (e) {
+    console.error('  ⚠ Sustainance demo seed failed:', e);
+  }
+  console.log(`  ✓ Sustainance demo user: ${sustainanceDemoUser.email} → ${demoCompany.name}`);
+
   // 7. Demo Companies (pre-seeded with departments, roles, employees, and completed assessments)
   const roleSkillMap = loadJson('role_skill_map.json');
   let demoCompaniesFile: string;
