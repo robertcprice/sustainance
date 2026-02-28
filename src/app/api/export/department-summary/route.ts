@@ -4,6 +4,14 @@ import { verifyAuth } from '@/lib/auth';
 import { buildRoleGapSummary } from '@/lib/scoring-engine';
 import ExcelJS from 'exceljs';
 
+function buildCsv(headers: string[], rows: (string | number)[][]): string {
+  const escape = (v: string | number) => {
+    const s = String(v);
+    return s.includes(',') || s.includes('"') ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  return [headers.map(escape).join(','), ...rows.map(r => r.map(escape).join(','))].join('\n');
+}
+
 const EMERALD = '059669';
 const WHITE = 'FFFFFF';
 const RED_LIGHT = 'FEE2E2';
@@ -17,6 +25,7 @@ export async function GET(request: NextRequest) {
   }
 
   const departmentId = request.nextUrl.searchParams.get('departmentId');
+  const format = request.nextUrl.searchParams.get('format') || 'xlsx';
   const company = await prisma.company.findUnique({ where: { id: auth.companyId } });
   if (!company) {
     return NextResponse.json({ error: 'Company not found' }, { status: 404 });
@@ -48,6 +57,33 @@ export async function GET(request: NextRequest) {
     },
     orderBy: { name: 'asc' },
   });
+
+  if (format === 'csv') {
+    const headers = ['Department', 'Employees', 'Role', 'Function', 'Readiness %', 'Risk Score', 'Critical Gaps', 'Moderate Gaps'];
+    const rows: (string | number)[][] = [];
+    for (const dept of departments) {
+      const roleGaps = dept.roles
+        .filter(r => r.assessments.length > 0)
+        .map(role => {
+          const latest = role.assessments.sort((a, b) =>
+            (b.completedAt?.getTime() || 0) - (a.completedAt?.getTime() || 0)
+          )[0];
+          return buildRoleGapSummary(role.id, role.title, role.function.name, role.skillRequirements, latest.answers);
+        });
+      for (const rg of roleGaps) {
+        const crit = rg.gaps.filter(g => g.severity === 'critical').length;
+        const mod = rg.gaps.filter(g => g.severity === 'moderate').length;
+        rows.push([dept.name, dept.employees.length, rg.roleTitle, rg.functionName, `${rg.readinessScore}%`, rg.riskScore, crit, mod]);
+      }
+    }
+    const csv = buildCsv(headers, rows);
+    return new NextResponse(csv, {
+      headers: {
+        'Content-Type': 'text/csv',
+        'Content-Disposition': `attachment; filename="dept-summary-${company!.name.replace(/\s+/g, '-')}.csv"`,
+      },
+    });
+  }
 
   const wb = new ExcelJS.Workbook();
   wb.creator = 'Sustainance';

@@ -16,8 +16,8 @@ interface DeptPick { id: string; name: string }
 
 function ExportDropdown() {
   const [open, setOpen] = useState(false);
-  const [showEmployeePicker, setShowEmployeePicker] = useState(false);
-  const [showDeptPicker, setShowDeptPicker] = useState(false);
+  const [showEmployeePicker, setShowEmployeePicker] = useState<'xlsx' | 'csv' | null>(null);
+  const [showDeptPicker, setShowDeptPicker] = useState<'xlsx' | 'csv' | null>(null);
   const [employees, setEmployees] = useState<EmployeePick[]>([]);
   const [departments, setDepartments] = useState<DeptPick[]>([]);
   const [loadingPicker, setLoadingPicker] = useState(false);
@@ -27,17 +27,17 @@ function ExportDropdown() {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setOpen(false);
-        setShowEmployeePicker(false);
-        setShowDeptPicker(false);
+        setShowEmployeePicker(null);
+        setShowDeptPicker(null);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  async function openEmployeePicker() {
-    setShowDeptPicker(false);
-    setShowEmployeePicker(true);
+  async function openEmployeePicker(fmt: 'xlsx' | 'csv') {
+    setShowDeptPicker(null);
+    setShowEmployeePicker(fmt);
     setOpen(false);
     if (employees.length === 0) {
       setLoadingPicker(true);
@@ -54,9 +54,9 @@ function ExportDropdown() {
     }
   }
 
-  async function openDeptPicker() {
-    setShowEmployeePicker(false);
-    setShowDeptPicker(true);
+  async function openDeptPicker(fmt: 'xlsx' | 'csv') {
+    setShowEmployeePicker(null);
+    setShowDeptPicker(fmt);
     setOpen(false);
     if (departments.length === 0) {
       setLoadingPicker(true);
@@ -75,7 +75,7 @@ function ExportDropdown() {
   return (
     <div ref={dropdownRef} className="relative">
       <button
-        onClick={() => { setOpen(!open); setShowEmployeePicker(false); setShowDeptPicker(false); }}
+        onClick={() => { setOpen(!open); setShowEmployeePicker(null); setShowDeptPicker(null); }}
         className="flex items-center gap-2 px-4 py-2 text-sm bg-white border border-gray-300 text-slate-700 rounded-xl hover:bg-gray-50 transition-colors font-medium"
       >
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -88,18 +88,35 @@ function ExportDropdown() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-1 w-56 bg-white border border-gray-200 rounded-xl shadow-lg z-50 py-1">
-          <button onClick={openEmployeePicker}
-            className="w-full text-left px-4 py-2.5 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-            Employee Scorecard (.xlsx)
+        <div className="absolute right-0 top-full mt-1 w-60 bg-white border border-gray-200 rounded-xl shadow-lg z-50 py-1">
+          <div className="px-4 py-1.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">Employee Scorecard</div>
+          <button onClick={() => openEmployeePicker('xlsx')}
+            className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+            Download .xlsx
           </button>
-          <button onClick={openDeptPicker}
-            className="w-full text-left px-4 py-2.5 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-            Department Summary (.xlsx)
+          <button onClick={() => openEmployeePicker('csv')}
+            className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+            Download .csv
           </button>
+          <div className="border-t border-gray-100 my-1" />
+          <div className="px-4 py-1.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">Department Summary</div>
+          <button onClick={() => openDeptPicker('xlsx')}
+            className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+            Download .xlsx
+          </button>
+          <button onClick={() => openDeptPicker('csv')}
+            className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+            Download .csv
+          </button>
+          <div className="border-t border-gray-100 my-1" />
+          <div className="px-4 py-1.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">Full Company Report</div>
           <a href="/api/export/company-report"
-            className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
-            Full Company Report (.xlsx)
+            className="block px-4 py-2 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+            Download .xlsx
+          </a>
+          <a href="/api/export/company-report?format=csv"
+            className="block px-4 py-2 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
+            Download .csv
           </a>
           <div className="border-t border-gray-100 my-1" />
           <a href="/api/export/csv"
@@ -111,14 +128,16 @@ function ExportDropdown() {
 
       {showEmployeePicker && (
         <div className="absolute right-0 top-full mt-1 w-72 bg-white border border-gray-200 rounded-xl shadow-lg z-50 py-2 max-h-80 overflow-y-auto">
-          <div className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Select Employee</div>
+          <div className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            Select Employee ({showEmployeePicker === 'csv' ? '.csv' : '.xlsx'})
+          </div>
           {loadingPicker ? (
             <div className="px-4 py-3 text-sm text-slate-400">Loading...</div>
           ) : employees.length === 0 ? (
             <div className="px-4 py-3 text-sm text-slate-400">No employees found</div>
           ) : employees.map(emp => (
-            <a key={emp.id} href={`/api/export/employee-scorecard?employeeId=${emp.id}`}
-              onClick={() => setShowEmployeePicker(false)}
+            <a key={emp.id} href={`/api/export/employee-scorecard?employeeId=${emp.id}&format=${showEmployeePicker}`}
+              onClick={() => setShowEmployeePicker(null)}
               className="block px-4 py-2 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
               <span className="font-medium">{emp.name}</span>
               {emp.department && <span className="text-slate-400 ml-2">{emp.department}</span>}
@@ -129,16 +148,18 @@ function ExportDropdown() {
 
       {showDeptPicker && (
         <div className="absolute right-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 py-2">
-          <div className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Select Department</div>
-          <a href="/api/export/department-summary" onClick={() => setShowDeptPicker(false)}
+          <div className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            Select Department ({showDeptPicker === 'csv' ? '.csv' : '.xlsx'})
+          </div>
+          <a href={`/api/export/department-summary?format=${showDeptPicker}`} onClick={() => setShowDeptPicker(null)}
             className="block px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-50 transition-colors">
             All Departments
           </a>
           {loadingPicker ? (
             <div className="px-4 py-3 text-sm text-slate-400">Loading...</div>
           ) : departments.map(dept => (
-            <a key={dept.id} href={`/api/export/department-summary?departmentId=${dept.id}`}
-              onClick={() => setShowDeptPicker(false)}
+            <a key={dept.id} href={`/api/export/department-summary?departmentId=${dept.id}&format=${showDeptPicker}`}
+              onClick={() => setShowDeptPicker(null)}
               className="block px-4 py-2 text-sm text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 transition-colors">
               {dept.name}
             </a>

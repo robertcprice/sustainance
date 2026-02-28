@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { verifyAuth } from '@/lib/auth';
 import { buildRoleGapSummary } from '@/lib/scoring-engine';
@@ -6,6 +6,14 @@ import { estimateRoi } from '@/lib/roi-engine';
 import { matchIncentives } from '@/lib/incentive-engine';
 import { GapResult } from '@/lib/types';
 import ExcelJS from 'exceljs';
+
+function buildCsv(headers: string[], rows: (string | number)[][]): string {
+  const escape = (v: string | number) => {
+    const s = String(v);
+    return s.includes(',') || s.includes('"') ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  return [headers.map(escape).join(','), ...rows.map(r => r.map(escape).join(','))].join('\n');
+}
 
 const EMERALD = '059669';
 const EMERALD_DARK = '047857';
@@ -51,7 +59,8 @@ function severityColor(severity: string): string {
   return EMERALD_LIGHT;
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const format = request.nextUrl.searchParams.get('format') || 'xlsx';
   const auth = await verifyAuth();
   if (!auth?.companyId) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
@@ -112,6 +121,23 @@ export async function GET() {
     where: { companyId: auth.companyId },
     include: { employees: { where: { isActive: true } } },
   });
+
+  if (format === 'csv') {
+    const headers = ['Department', 'Role', 'Function', 'Skill Family', 'Skill', 'Required Level', 'Current Level', 'Gap', 'Severity', 'Readiness %', 'Risk Score'];
+    const csvRows: (string | number)[][] = [];
+    for (const rg of roleGaps) {
+      for (const gap of rg.gaps) {
+        csvRows.push([rg.departmentName, rg.roleTitle, rg.functionName, gap.familyName, gap.skillName, gap.requiredLevel, gap.currentLevel, gap.gap, gap.severity, rg.readinessScore, rg.riskScore]);
+      }
+    }
+    const csv = buildCsv(headers, csvRows);
+    return new NextResponse(csv, {
+      headers: {
+        'Content-Type': 'text/csv',
+        'Content-Disposition': `attachment; filename="sustainance-report-${company.name.replace(/\s+/g, '-')}.csv"`,
+      },
+    });
+  }
 
   // ─── Build Workbook ───
   const wb = new ExcelJS.Workbook();

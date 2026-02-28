@@ -3,6 +3,14 @@ import { prisma } from '@/lib/prisma';
 import { verifyAuth } from '@/lib/auth';
 import ExcelJS from 'exceljs';
 
+function buildCsv(headers: string[], rows: (string | number)[][]): string {
+  const escape = (v: string | number) => {
+    const s = String(v);
+    return s.includes(',') || s.includes('"') ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  return [headers.map(escape).join(','), ...rows.map(r => r.map(escape).join(','))].join('\n');
+}
+
 const EMERALD = '059669';
 const EMERALD_LIGHT = 'D1FAE5';
 const RED_LIGHT = 'FEE2E2';
@@ -16,6 +24,7 @@ export async function GET(request: NextRequest) {
   }
 
   const employeeId = request.nextUrl.searchParams.get('employeeId');
+  const format = request.nextUrl.searchParams.get('format') || 'xlsx';
   if (!employeeId) {
     return NextResponse.json({ error: 'employeeId is required' }, { status: 400 });
   }
@@ -45,6 +54,37 @@ export async function GET(request: NextRequest) {
   }
 
   const company = await prisma.company.findUnique({ where: { id: auth.companyId } });
+
+  // Use EmployeeSkillAssessment records for current levels
+  const employeeAssessments = await prisma.employeeSkillAssessment.findMany({
+    where: { employeeId: employee.id, companyId: auth.companyId },
+  });
+
+  const currentLevels: Record<string, number> = {};
+  for (const a of employeeAssessments) {
+    currentLevels[a.skillId] = a.currentLevel;
+  }
+
+  const requirements = employee.role.skillRequirements;
+  const totalXp = employee.xp.reduce((sum, x) => sum + x.xpTotal, 0);
+
+  if (format === 'csv') {
+    const headers = ['Employee', 'Role', 'Department', 'Function', 'Skill Family', 'Skill', 'Required Level', 'Current Level', 'Gap', 'Status', 'Weight'];
+    const rows: (string | number)[][] = [];
+    for (const req of requirements) {
+      const current = currentLevels[req.skillId] ?? 0;
+      const gap = Math.max(0, req.requiredLevel - current);
+      const status = gap >= 2 ? 'Critical' : gap >= 1 ? 'Moderate' : 'Met';
+      rows.push([employee.name, employee.role.title, employee.department.name, employee.role.function.name, req.skill.family.name, req.skill.name, req.requiredLevel, current, gap, status, req.weight]);
+    }
+    const csv = buildCsv(headers, rows);
+    return new NextResponse(csv, {
+      headers: {
+        'Content-Type': 'text/csv',
+        'Content-Disposition': `attachment; filename="scorecard-${employee.name.replace(/\s+/g, '-')}.csv"`,
+      },
+    });
+  }
 
   const wb = new ExcelJS.Workbook();
   wb.creator = 'Sustainance';
@@ -79,7 +119,6 @@ export async function GET(request: NextRequest) {
   ws.getCell('A7').value = 'Function';
   ws.getCell('B7').value = employee.role.function.name;
 
-  const totalXp = employee.xp.reduce((sum, x) => sum + x.xpTotal, 0);
   ws.getCell('D4').value = 'Total XP';
   ws.getCell('E4').value = totalXp;
   ws.getCell('D5').value = 'Assessments';
@@ -105,25 +144,6 @@ export async function GET(request: NextRequest) {
 
   // Build skill data from employee assessments
   let row = headerRow + 1;
-  const requirements = employee.role.skillRequirements;
-
-  // Get latest assessment score per skill
-  const skillScores: Record<string, number> = {};
-  for (const assess of employee.assessments) {
-    if (!skillScores[assess.employeeId]) {
-      // Use the EmployeeSkillAssessment data
-    }
-  }
-
-  // Use EmployeeSkillAssessment records for current levels
-  const employeeAssessments = await prisma.employeeSkillAssessment.findMany({
-    where: { employeeId: employee.id, companyId: auth.companyId },
-  });
-
-  const currentLevels: Record<string, number> = {};
-  for (const a of employeeAssessments) {
-    currentLevels[a.skillId] = a.currentLevel;
-  }
 
   let metCount = 0;
   for (const req of requirements) {
