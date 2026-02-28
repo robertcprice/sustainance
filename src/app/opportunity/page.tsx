@@ -12,7 +12,7 @@ interface OpportunityData {
     matchingPrograms: number;
     criticalGaps: number;
     moderateGaps: number;
-    totalGaps: number;
+    onTrack: number;
     totalEmployees: number;
     rolesAssessed: number;
   };
@@ -146,8 +146,8 @@ export default function OpportunityPage() {
             <div className="text-xs text-slate-500 mt-1">Moderate Gaps</div>
           </div>
           <div className="panel rounded-xl shadow-sm p-4 text-center">
-            <div className="text-2xl font-bold text-slate-700">{data.stats.totalGaps}</div>
-            <div className="text-xs text-slate-500 mt-1">Total Gaps</div>
+            <div className="text-2xl font-bold text-emerald-600">{data.stats.onTrack}</div>
+            <div className="text-xs text-slate-500 mt-1">Skills On Track</div>
           </div>
         </div>
 

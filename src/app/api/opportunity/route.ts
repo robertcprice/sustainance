@@ -48,7 +48,7 @@ export async function GET() {
   const allGaps: GapResult[] = roleGaps.flatMap((r) => r.gaps);
   const criticalGaps = allGaps.filter((g) => g.severity === 'critical').length;
   const moderateGaps = allGaps.filter((g) => g.severity === 'moderate').length;
-  const totalGaps = criticalGaps + moderateGaps;
+  const onTrack = allGaps.filter((g) => g.severity === 'no_gap').length;
 
   const programs = await prisma.incentiveProgram.findMany();
   const matched = matchIncentives(programs, company.industry, company.state, allGaps);
@@ -70,7 +70,7 @@ export async function GET() {
       matchingPrograms: matched.length,
       criticalGaps,
       moderateGaps,
-      totalGaps,
+      onTrack,
       totalEmployees,
       rolesAssessed: roleGaps.length,
     },
