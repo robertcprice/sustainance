@@ -516,11 +516,15 @@ const DEMO_CAMPAIGNS = {
 };
 
 function CampaignsTab() {
+  const router = useRouter();
   const STATUS_STYLES: Record<string, { bg: string; fg: string }> = {
     "In Progress": { bg: "#D1FAE5", fg: "#065F46" },
     "Awaiting Responses": { bg: "#FEF3C7", fg: "#92400E" },
     "Completed": { bg: "#E0E7FF", fg: "#3730A3" },
   };
+
+  const clickable: React.CSSProperties = { cursor: "pointer", transition: "transform 0.2s, box-shadow 0.2s" };
+  const goTo = (id: string) => router.push(`/dashboard/community/campaign/${id}`);
 
   return (
     <div>
@@ -537,7 +541,8 @@ function CampaignsTab() {
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {DEMO_CAMPAIGNS.active.map(c => (
-              <div key={c.id} style={{ ...cardS, padding: 20 }}>
+              <div key={c.id} onClick={() => goTo(c.id)} style={{ ...cardS, padding: 20, ...clickable }}
+                onMouseEnter={e => hov(e, true)} onMouseLeave={e => hov(e, false)}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
                   <div>
                     <div style={{ fontSize: 15, fontWeight: 700, color: "#1E293B" }}>{c.name}</div>
@@ -564,7 +569,8 @@ function CampaignsTab() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {DEMO_CAMPAIGNS.past.map(c => (
-            <div key={c.id} style={{ ...cardS, padding: 20, opacity: 0.85 }}>
+            <div key={c.id} onClick={() => goTo(c.id)} style={{ ...cardS, padding: 20, opacity: 0.85, ...clickable }}
+              onMouseEnter={e => hov(e, true)} onMouseLeave={e => hov(e, false)}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: "#1E293B" }}>{c.name}</div>
@@ -590,28 +596,30 @@ function CampaignsTab() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
           {DEMO_CAMPAIGNS.industry.map(c => (
-            <div key={c.id} style={{ ...cardS, padding: 20, transition: "transform 0.3s, box-shadow 0.3s" }}
+            <div key={c.id} style={{ ...cardS, padding: 20, ...clickable }}
               onMouseEnter={e => hov(e, true)} onMouseLeave={e => hov(e, false)}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-                <div style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: "#ECFDF5", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  {Icons.handshake({ w: 18, h: 18, color: "#059669" })}
+              <div onClick={() => goTo(c.id)} style={{ cursor: "pointer" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+                  <div style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: "#ECFDF5", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    {Icons.handshake({ w: 18, h: 18, color: "#059669" })}
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "#1E293B" }}>{c.name}</div>
+                    <div style={{ fontSize: 11, color: "#94A3B8" }}>by {c.organizer}</div>
+                  </div>
                 </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: "#1E293B" }}>{c.name}</div>
-                  <div style={{ fontSize: 11, color: "#94A3B8" }}>by {c.organizer}</div>
+                <div style={{ display: "flex", gap: 16, fontSize: 12, color: "#64748B", marginBottom: 12 }}>
+                  <span>{c.partners} partners</span>
+                  <span>{c.industry}</span>
+                  <span>{c.region}</span>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: 16, fontSize: 12, color: "#64748B", marginBottom: 12 }}>
-                <span>{c.partners} partners</span>
-                <span>{c.industry}</span>
-                <span>{c.region}</span>
-              </div>
-              <button style={{
+              <button onClick={() => goTo(c.id)} style={{
                 width: "100%", padding: "10px 16px", borderRadius: 12, border: "1px solid #D1FAE5",
                 backgroundColor: "#ECFDF5", fontSize: 12, fontWeight: 700, color: "#059669",
                 cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s"
               }}>
-                Request to Join
+                View Campaign
               </button>
             </div>
           ))}
