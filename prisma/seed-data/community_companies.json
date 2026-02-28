@@ -1,0 +1,20 @@
+[
+  { "rank": 1, "name": "Vestas Wind Systems", "industry": "Energy", "region": "Northern Europe", "score": 94.2, "scoreChange": 2.1, "logo": "\ud83c\udf2c\ufe0f", "employees": "29K+", "highlights": ["Net-zero ops since 2023", "Circular blade recycling"] },
+  { "rank": 2, "name": "Patagonia", "industry": "Retail", "region": "North America", "score": 91.8, "scoreChange": 1.4, "logo": "\ud83c\udfd4\ufe0f", "employees": "3K+", "highlights": ["1% for the Planet", "Worn Wear program"] },
+  { "rank": 3, "name": "\u00d8rsted", "industry": "Energy", "region": "Northern Europe", "score": 90.5, "scoreChange": 4.2, "logo": "\u26a1", "employees": "8K+", "highlights": ["Coal \u2192 green energy", "SBTi leader"] },
+  { "rank": 4, "name": "Interface", "industry": "Manufacturing", "region": "North America", "score": 89.1, "scoreChange": 1.8, "logo": "\ud83e\uddf1", "employees": "3.5K+", "highlights": ["Climate Take Back", "Carbon negative"] },
+  { "rank": 5, "name": "Schneider Electric", "industry": "Technology", "region": "Western Europe", "score": 87.6, "scoreChange": 3.1, "logo": "\ud83d\udd0c", "employees": "150K+", "highlights": ["#1 sustainable corp", "Zero-carbon"] },
+  { "rank": 6, "name": "Natura & Co", "industry": "Retail", "region": "South America", "score": 86.3, "scoreChange": 2.7, "logo": "\ud83c\udf3f", "employees": "35K+", "highlights": ["Amazon conservation", "B Corp"] },
+  { "rank": 7, "name": "Siemens Gamesa", "industry": "Energy", "region": "Western Europe", "score": 85.9, "scoreChange": 1.9, "logo": "\ud83c\udf00", "employees": "27K+", "highlights": ["Recyclable blades", "Green hydrogen"] },
+  { "rank": 8, "name": "Unilever", "industry": "Retail", "region": "Western Europe", "score": 84.2, "scoreChange": 0.8, "logo": "\ud83e\uddf4", "employees": "127K+", "highlights": ["Regen agriculture", "Plastic-free 2030"] },
+  { "rank": 9, "name": "Suzano", "industry": "Manufacturing", "region": "South America", "score": 83.7, "scoreChange": 3.5, "logo": "\ud83c\udf33", "employees": "15K+", "highlights": ["Eucalyptus pulp", "Carbon removal"] },
+  { "rank": 10, "name": "Tesla", "industry": "Technology", "region": "North America", "score": 82.1, "scoreChange": -0.4, "logo": "\ud83d\ude97", "employees": "140K+", "highlights": ["EV transformation", "Gigafactory"] },
+  { "rank": 11, "name": "Enel Green Power", "industry": "Energy", "region": "Western Europe", "score": 79.4, "scoreChange": 1.2, "logo": "\ud83d\udca1", "employees": "56K+", "highlights": ["Renewable leader", "Hydrogen pilot"] },
+  { "rank": 12, "name": "Danone", "industry": "Retail", "region": "Western Europe", "score": 74.3, "scoreChange": 0.5, "logo": "\ud83e\udd5b", "employees": "86K+", "highlights": ["B Corp", "Regen farming"] },
+  { "rank": 13, "name": "GreenTech Solutions", "industry": "Technology", "region": "North America", "score": 67.8, "scoreChange": 5.3, "logo": "\ud83d\udd0b", "employees": "2K+", "highlights": ["Carbon API", "Fast riser"] },
+  { "rank": 14, "name": "SolarEdge", "industry": "Technology", "region": "North America", "score": 63.2, "scoreChange": 2.8, "logo": "\u2600\ufe0f", "employees": "5K+", "highlights": ["Smart energy", "Expanding"] },
+  { "rank": 15, "name": "CleanLogistics", "industry": "Manufacturing", "region": "Northern Europe", "score": 58.4, "scoreChange": 3.1, "logo": "\ud83d\ude9a", "employees": "1.2K+", "highlights": ["Green fleet", "New to reporting"] },
+  { "rank": 16, "name": "EcoTextiles", "industry": "Retail", "region": "South America", "score": 51.2, "scoreChange": 6.7, "logo": "\ud83e\uddf5", "employees": "800+", "highlights": ["Organic cotton", "Building capacity"] },
+  { "rank": 17, "name": "BioPackaging Inc", "industry": "Manufacturing", "region": "North America", "score": 44.6, "scoreChange": 4.2, "logo": "\ud83d\udce6", "employees": "450+", "highlights": ["Compostable pkg", "Early stage"] },
+  { "rank": 18, "name": "Meridian Health", "industry": "Healthcare", "region": "North America", "score": 38.9, "scoreChange": 1.1, "logo": "\ud83c\udfe5", "employees": "12K+", "highlights": ["Green hospital", "Starting out"] }
+]

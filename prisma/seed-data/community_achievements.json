@@ -1,0 +1,8 @@
+[
+  { "company": "Vestas Wind Systems", "logo": "\ud83c\udf2c\ufe0f", "text": "First manufacturer to achieve fully recyclable wind turbine blades at commercial scale", "date": "Feb 2026", "type": "milestone", "impact": "Eliminates 40,000 tons of blade waste annually" },
+  { "company": "Schneider Electric", "logo": "\ud83d\udd0c", "text": "100% of new product lines now meet eco-design criteria across all business units", "date": "Jan 2026", "type": "certification", "impact": "Covering 200+ product families worldwide" },
+  { "company": "Patagonia", "logo": "\ud83c\udfd4\ufe0f", "text": "Worn Wear program surpassed 1 million garment repairs", "date": "Feb 2026", "type": "milestone", "impact": "Prevented 500+ tons of textile waste" },
+  { "company": "Natura & Co", "logo": "\ud83c\udf3f", "text": "Completed mapping of 100% Scope 3 emissions across entire supply chain", "date": "Jan 2026", "type": "reporting", "impact": "First major beauty company with full transparency" },
+  { "company": "Interface", "logo": "\ud83e\uddf1", "text": "Launched first carbon-negative carpet tile certified by third-party auditor", "date": "Dec 2025", "type": "product", "impact": "Sequesters 2kg more CO\u2082 than emitted per m\u00b2" },
+  { "company": "\u00d8rsted", "logo": "\u26a1", "text": "Commissioned largest offshore wind farm in the Americas at 2.5GW", "date": "Jan 2026", "type": "milestone", "impact": "Powers 1.5 million homes with clean energy" }
+]

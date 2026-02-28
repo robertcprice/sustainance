@@ -1,0 +1,10 @@
+[
+  { "name": "Northern Europe", "score": 78.4, "topCompany": "Vestas Wind Systems", "companyCount": 342 },
+  { "name": "Western Europe", "score": 72.1, "topCompany": "Schneider Electric", "companyCount": 521 },
+  { "name": "North America", "score": 64.8, "topCompany": "Patagonia", "companyCount": 687 },
+  { "name": "East Asia", "score": 61.2, "topCompany": "Toyota", "companyCount": 423 },
+  { "name": "South America", "score": 58.9, "topCompany": "Natura & Co", "companyCount": 198 },
+  { "name": "Southeast Asia", "score": 52.3, "topCompany": "Grab Holdings", "companyCount": 156 },
+  { "name": "Middle East", "score": 44.7, "topCompany": "ACWA Power", "companyCount": 89 },
+  { "name": "Africa", "score": 41.2, "topCompany": "Eskom Holdings", "companyCount": 67 }
+]

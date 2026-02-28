@@ -1,0 +1,216 @@
+[
+  {
+    "id": "demo_verde",
+    "name": "Verde Kitchen & Bar",
+    "industry": "Hospitality",
+    "size": "medium",
+    "state": "CA",
+    "isPublic": true,
+    "description": "An upscale farm-to-table restaurant and craft cocktail bar committed to sustainable sourcing, zero-waste kitchen practices, and carbon-neutral dining experiences.",
+    "departments": [
+      { "id": "dept_verde_kitchen", "name": "Kitchen & Culinary" },
+      { "id": "dept_verde_bar", "name": "Bar & Beverage" },
+      { "id": "dept_verde_ops", "name": "Operations & Facilities" },
+      { "id": "dept_verde_admin", "name": "Administration" }
+    ],
+    "roles": [
+      {
+        "id": "role_verde_chef",
+        "title": "Head Chef",
+        "functionId": "ops_facilities",
+        "departmentId": "dept_verde_kitchen"
+      },
+      {
+        "id": "role_verde_procurement",
+        "title": "Procurement Manager",
+        "functionId": "proc_supply",
+        "departmentId": "dept_verde_ops"
+      },
+      {
+        "id": "role_verde_finance",
+        "title": "Finance Manager",
+        "functionId": "fin_risk",
+        "departmentId": "dept_verde_admin"
+      },
+      {
+        "id": "role_verde_hr",
+        "title": "HR Manager",
+        "functionId": "people_hr",
+        "departmentId": "dept_verde_admin"
+      },
+      {
+        "id": "role_verde_marketing",
+        "title": "Marketing Manager",
+        "functionId": "sales_mktg",
+        "departmentId": "dept_verde_admin"
+      }
+    ],
+    "employees": [
+      { "id": "emp_verde_01", "name": "Rosa Gutierrez", "departmentId": "dept_verde_kitchen", "roleId": "role_verde_chef" },
+      { "id": "emp_verde_02", "name": "Wesley Fong", "departmentId": "dept_verde_bar", "roleId": "role_verde_chef" },
+      { "id": "emp_verde_03", "name": "Tamara Osei", "departmentId": "dept_verde_ops", "roleId": "role_verde_procurement" },
+      { "id": "emp_verde_04", "name": "Nikolai Petrov", "departmentId": "dept_verde_ops", "roleId": "role_verde_procurement" },
+      { "id": "emp_verde_05", "name": "Sienna Blake", "departmentId": "dept_verde_admin", "roleId": "role_verde_finance" },
+      { "id": "emp_verde_06", "name": "Kwame Mensah", "departmentId": "dept_verde_admin", "roleId": "role_verde_hr" },
+      { "id": "emp_verde_07", "name": "Leila Khoury", "departmentId": "dept_verde_admin", "roleId": "role_verde_marketing" },
+      { "id": "emp_verde_08", "name": "Tomás Herrera", "departmentId": "dept_verde_kitchen", "roleId": "role_verde_chef" }
+    ],
+    "assessments": [
+      {
+        "roleId": "role_verde_chef",
+        "answers": {
+          "q_u01": 4, "q_u02": 3, "q_u03": 3, "q_u04": 2, "q_u05": 3,
+          "q_of01": 4, "q_of02": 3, "q_of03": 1, "q_of04": 4, "q_of05": 2,
+          "q_of06": 3, "q_of07": 2, "q_of08": 3, "q_of09": 4, "q_of10": 3
+        }
+      },
+      {
+        "roleId": "role_verde_procurement",
+        "answers": {
+          "q_u01": 3, "q_u02": 2, "q_u03": 4, "q_u04": 1, "q_u05": 2,
+          "q_ps01": 4, "q_ps02": 3, "q_ps03": 2, "q_ps04": 3, "q_ps05": 3,
+          "q_ps06": 2, "q_ps07": 4, "q_ps08": 2, "q_ps09": 1, "q_ps10": 3
+        }
+      },
+      {
+        "roleId": "role_verde_finance",
+        "answers": {
+          "q_u01": 1, "q_u02": 2, "q_u03": 1, "q_u04": 3, "q_u05": 2,
+          "q_fr01": 1, "q_fr02": 2, "q_fr03": 1, "q_fr04": 3, "q_fr05": 2,
+          "q_fr06": 2, "q_fr07": 1, "q_fr08": 1, "q_fr09": 2, "q_fr10": 3
+        }
+      },
+      {
+        "roleId": "role_verde_hr",
+        "answers": {
+          "q_u01": 3, "q_u02": 3, "q_u03": 2, "q_u04": 1, "q_u05": 4,
+          "q_ph01": 4, "q_ph02": 2, "q_ph03": 4, "q_ph04": 3, "q_ph05": 2,
+          "q_ph06": 4, "q_ph07": 3, "q_ph08": 3, "q_ph09": 2, "q_ph10": 4
+        }
+      },
+      {
+        "roleId": "role_verde_marketing",
+        "answers": {
+          "q_u01": 2, "q_u02": 2, "q_u03": 3, "q_u04": 1, "q_u05": 4,
+          "q_sm01": 4, "q_sm02": 3, "q_sm03": 2, "q_sm04": 3, "q_sm05": 3,
+          "q_sm06": 2, "q_sm07": 1, "q_sm08": 4, "q_sm09": 3, "q_sm10": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "demo_gsa",
+    "name": "Global Sports Alliance",
+    "industry": "Sports & Entertainment",
+    "size": "large",
+    "state": "NY",
+    "isPublic": true,
+    "description": "An international sports commission governing major athletic events worldwide, committed to sustainable event operations, carbon-neutral competitions, and green venue standards.",
+    "departments": [
+      { "id": "dept_gsa_events", "name": "Event Operations" },
+      { "id": "dept_gsa_legal", "name": "Legal & Governance" },
+      { "id": "dept_gsa_commercial", "name": "Commercial & Partnerships" },
+      { "id": "dept_gsa_tech", "name": "Technology & Innovation" }
+    ],
+    "roles": [
+      {
+        "id": "role_gsa_events",
+        "title": "Event Operations Director",
+        "functionId": "ops_facilities",
+        "departmentId": "dept_gsa_events"
+      },
+      {
+        "id": "role_gsa_procurement",
+        "title": "Procurement Director",
+        "functionId": "proc_supply",
+        "departmentId": "dept_gsa_events"
+      },
+      {
+        "id": "role_gsa_cfo",
+        "title": "CFO / Finance Director",
+        "functionId": "fin_risk",
+        "departmentId": "dept_gsa_commercial"
+      },
+      {
+        "id": "role_gsa_cto",
+        "title": "Chief Technology Officer",
+        "functionId": "tech_it",
+        "departmentId": "dept_gsa_tech"
+      },
+      {
+        "id": "role_gsa_legal",
+        "title": "Head of Legal & Compliance",
+        "functionId": "legal_comp",
+        "departmentId": "dept_gsa_legal"
+      },
+      {
+        "id": "role_gsa_sales",
+        "title": "VP Sales & Partnerships",
+        "functionId": "sales_mktg",
+        "departmentId": "dept_gsa_commercial"
+      }
+    ],
+    "employees": [
+      { "id": "emp_gsa_01", "name": "Katarina Voronova", "departmentId": "dept_gsa_events", "roleId": "role_gsa_events" },
+      { "id": "emp_gsa_02", "name": "Andre Baptiste", "departmentId": "dept_gsa_events", "roleId": "role_gsa_events" },
+      { "id": "emp_gsa_03", "name": "Mei-Lin Chang", "departmentId": "dept_gsa_events", "roleId": "role_gsa_procurement" },
+      { "id": "emp_gsa_04", "name": "Callum Stewart", "departmentId": "dept_gsa_commercial", "roleId": "role_gsa_cfo" },
+      { "id": "emp_gsa_05", "name": "Deepa Ranganathan", "departmentId": "dept_gsa_tech", "roleId": "role_gsa_cto" },
+      { "id": "emp_gsa_06", "name": "Étienne Moreau", "departmentId": "dept_gsa_tech", "roleId": "role_gsa_cto" },
+      { "id": "emp_gsa_07", "name": "Valentina Cruz", "departmentId": "dept_gsa_legal", "roleId": "role_gsa_legal" },
+      { "id": "emp_gsa_08", "name": "Lars Eriksson", "departmentId": "dept_gsa_legal", "roleId": "role_gsa_legal" },
+      { "id": "emp_gsa_09", "name": "Chioma Eze", "departmentId": "dept_gsa_commercial", "roleId": "role_gsa_sales" },
+      { "id": "emp_gsa_10", "name": "Sanjay Mehta", "departmentId": "dept_gsa_commercial", "roleId": "role_gsa_sales" }
+    ],
+    "assessments": [
+      {
+        "roleId": "role_gsa_events",
+        "answers": {
+          "q_u01": 4, "q_u02": 3, "q_u03": 2, "q_u04": 3, "q_u05": 4,
+          "q_of01": 3, "q_of02": 3, "q_of03": 4, "q_of04": 2, "q_of05": 3,
+          "q_of06": 2, "q_of07": 4, "q_of08": 3, "q_of09": 1, "q_of10": 2
+        }
+      },
+      {
+        "roleId": "role_gsa_procurement",
+        "answers": {
+          "q_u01": 2, "q_u02": 3, "q_u03": 3, "q_u04": 2, "q_u05": 2,
+          "q_ps01": 4, "q_ps02": 3, "q_ps03": 2, "q_ps04": 3, "q_ps05": 2,
+          "q_ps06": 3, "q_ps07": 2, "q_ps08": 1, "q_ps09": 3, "q_ps10": 2
+        }
+      },
+      {
+        "roleId": "role_gsa_cfo",
+        "answers": {
+          "q_u01": 3, "q_u02": 3, "q_u03": 1, "q_u04": 4, "q_u05": 3,
+          "q_fr01": 4, "q_fr02": 3, "q_fr03": 2, "q_fr04": 4, "q_fr05": 3,
+          "q_fr06": 3, "q_fr07": 2, "q_fr08": 4, "q_fr09": 3, "q_fr10": 3
+        }
+      },
+      {
+        "roleId": "role_gsa_cto",
+        "answers": {
+          "q_u01": 2, "q_u02": 1, "q_u03": 2, "q_u04": 1, "q_u05": 2,
+          "q_ti01": 3, "q_ti02": 2, "q_ti03": 3, "q_ti04": 1, "q_ti05": 2,
+          "q_ti06": 1, "q_ti07": 3, "q_ti08": 4, "q_ti09": 2, "q_ti10": 1
+        }
+      },
+      {
+        "roleId": "role_gsa_legal",
+        "answers": {
+          "q_u01": 4, "q_u02": 4, "q_u03": 2, "q_u04": 4, "q_u05": 3,
+          "q_lc01": 4, "q_lc02": 4, "q_lc03": 3, "q_lc04": 4, "q_lc05": 4,
+          "q_lc06": 3, "q_lc07": 3, "q_lc08": 4, "q_lc09": 3, "q_lc10": 4
+        }
+      },
+      {
+        "roleId": "role_gsa_sales",
+        "answers": {
+          "q_u01": 2, "q_u02": 1, "q_u03": 3, "q_u04": 1, "q_u05": 2,
+          "q_sm01": 2, "q_sm02": 3, "q_sm03": 4, "q_sm04": 2, "q_sm05": 1,
+          "q_sm06": 3, "q_sm07": 2, "q_sm08": 3, "q_sm09": 1, "q_sm10": 3
+        }
+      }
+    ]
+  }
+]

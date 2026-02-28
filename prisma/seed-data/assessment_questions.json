@@ -1,0 +1,602 @@
+[
+  {
+    "id": "q_u01",
+    "text": "I can explain the difference between Scope 1, 2, and 3 emissions to a non-technical audience.",
+    "scenarioText": "Assessing your understanding of carbon accounting fundamentals.",
+    "skillIds": ["cc_scopes_basics", "cc_carbon_footprint"],
+    "functionId": null,
+    "orderIndex": 1
+  },
+  {
+    "id": "q_u02",
+    "text": "I understand how climate risks could impact my organization's operations and long-term strategy.",
+    "scenarioText": "Evaluating your awareness of physical and transition climate risks.",
+    "skillIds": ["cc_climate_risk", "cc_climate_adaptation"],
+    "functionId": null,
+    "orderIndex": 2
+  },
+  {
+    "id": "q_u03",
+    "text": "I can identify circular economy opportunities relevant to my work area.",
+    "scenarioText": "Assessing your ability to apply circular principles in daily operations.",
+    "skillIds": ["cc_circular_principles", "os_waste_management"],
+    "functionId": null,
+    "orderIndex": 3
+  },
+  {
+    "id": "q_u04",
+    "text": "I am aware of key sustainability reporting frameworks such as GRI, SASB, and TCFD and their purposes.",
+    "scenarioText": "Gauging your familiarity with the sustainability disclosure landscape.",
+    "skillIds": ["gp_esg_reporting", "gp_tcfd_tnfd"],
+    "functionId": null,
+    "orderIndex": 4
+  },
+  {
+    "id": "q_u05",
+    "text": "I can communicate sustainability concepts to colleagues without relying on jargon or technical shorthand.",
+    "scenarioText": "Evaluating your ability to make sustainability accessible across teams.",
+    "skillIds": ["gp_sustainability_comms", "gp_stakeholder_engagement"],
+    "functionId": null,
+    "orderIndex": 5
+  },
+  {
+    "id": "q_of01",
+    "text": "I can develop and implement an energy management plan for a facility, including setting reduction targets and tracking progress.",
+    "scenarioText": "Assessing your capability to lead energy efficiency initiatives in building operations.",
+    "skillIds": ["os_energy_management", "cc_renewable_energy"],
+    "functionId": "ops_facilities",
+    "orderIndex": 6
+  },
+  {
+    "id": "q_of02",
+    "text": "I can design and oversee a waste reduction program that includes sorting, diversion metrics, and continuous improvement.",
+    "scenarioText": "Evaluating your ability to minimize operational waste to landfill.",
+    "skillIds": ["os_waste_management", "cc_circular_principles"],
+    "functionId": "ops_facilities",
+    "orderIndex": 7
+  },
+  {
+    "id": "q_of03",
+    "text": "I understand green building certification standards (e.g., LEED, BREEAM) and can apply them to facility upgrades or new builds.",
+    "scenarioText": "Assessing your knowledge of sustainable building design and certification.",
+    "skillIds": ["os_green_building"],
+    "functionId": "ops_facilities",
+    "orderIndex": 8
+  },
+  {
+    "id": "q_of04",
+    "text": "I can identify resource efficiency improvements across water, materials, and energy in day-to-day facility operations.",
+    "scenarioText": "Evaluating your ability to spot and act on resource optimization opportunities.",
+    "skillIds": ["os_resource_efficiency", "cc_water_stewardship"],
+    "functionId": "ops_facilities",
+    "orderIndex": 9
+  },
+  {
+    "id": "q_of05",
+    "text": "I can calculate and report the operational carbon footprint of a site, including Scope 1 and 2 sources.",
+    "scenarioText": "Assessing your ability to quantify and track facility-level emissions.",
+    "skillIds": ["os_operational_carbon", "cc_carbon_footprint"],
+    "functionId": "ops_facilities",
+    "orderIndex": 10
+  },
+  {
+    "id": "q_of06",
+    "text": "I can integrate environmental, health, and safety (EHS) requirements into operational planning and incident response.",
+    "scenarioText": "Evaluating your competency in managing EHS within a facilities context.",
+    "skillIds": ["os_ehs"],
+    "functionId": "ops_facilities",
+    "orderIndex": 11
+  },
+  {
+    "id": "q_of07",
+    "text": "I can assess a facility's vulnerability to climate-related disruptions and recommend resilience measures.",
+    "scenarioText": "Assessing your ability to prepare operations for extreme weather and climate shifts.",
+    "skillIds": ["os_climate_resilient_ops", "cc_climate_adaptation"],
+    "functionId": "ops_facilities",
+    "orderIndex": 12
+  },
+  {
+    "id": "q_of08",
+    "text": "I can analyze operational processes to identify inefficiencies and propose sustainability-driven improvements.",
+    "scenarioText": "Evaluating your process optimization skills with a sustainability lens.",
+    "skillIds": ["os_process_optimization", "os_resource_efficiency"],
+    "functionId": "ops_facilities",
+    "orderIndex": 13
+  },
+  {
+    "id": "q_of09",
+    "text": "I can evaluate and manage a facility's indoor and outdoor air quality, including monitoring emissions and ventilation.",
+    "scenarioText": "Assessing your understanding of air quality management in building operations.",
+    "skillIds": ["cc_air_quality", "os_ehs"],
+    "functionId": "ops_facilities",
+    "orderIndex": 14
+  },
+  {
+    "id": "q_of10",
+    "text": "I can set up environmental monitoring systems (energy meters, water sensors, waste tracking) and use the data to drive decisions.",
+    "scenarioText": "Evaluating your ability to deploy measurement infrastructure for sustainability KPIs.",
+    "skillIds": ["os_energy_management", "os_operational_carbon"],
+    "functionId": "ops_facilities",
+    "orderIndex": 15
+  },
+  {
+    "id": "q_ps01",
+    "text": "I can integrate sustainability criteria into procurement policies and purchasing decisions.",
+    "scenarioText": "Assessing your ability to embed environmental and social factors into buying processes.",
+    "skillIds": ["os_sustainable_procurement"],
+    "functionId": "proc_supply",
+    "orderIndex": 16
+  },
+  {
+    "id": "q_ps02",
+    "text": "I can conduct a sustainability assessment of suppliers, including evaluating their environmental and social performance.",
+    "scenarioText": "Evaluating your competency in vetting suppliers against sustainability standards.",
+    "skillIds": ["os_supplier_assessment", "os_sustainable_procurement"],
+    "functionId": "proc_supply",
+    "orderIndex": 17
+  },
+  {
+    "id": "q_ps03",
+    "text": "I can map a supply chain to identify environmental and social risk hotspots across tiers.",
+    "scenarioText": "Assessing your ability to visualize and analyze supply chain sustainability risks.",
+    "skillIds": ["os_supply_chain_mapping"],
+    "functionId": "proc_supply",
+    "orderIndex": 18
+  },
+  {
+    "id": "q_ps04",
+    "text": "I can evaluate logistics and distribution options to minimize carbon emissions and environmental impact.",
+    "scenarioText": "Evaluating your ability to optimize transportation for lower emissions.",
+    "skillIds": ["os_logistics_optimization", "os_operational_carbon"],
+    "functionId": "proc_supply",
+    "orderIndex": 19
+  },
+  {
+    "id": "q_ps05",
+    "text": "I can assess materials for sustainability attributes such as recyclability, toxicity, and embodied carbon.",
+    "scenarioText": "Assessing your knowledge of sustainable material selection and specification.",
+    "skillIds": ["os_sustainable_materials", "cc_circular_principles"],
+    "functionId": "proc_supply",
+    "orderIndex": 20
+  },
+  {
+    "id": "q_ps06",
+    "text": "I understand the principles of life cycle assessment and can interpret LCA results to inform procurement choices.",
+    "scenarioText": "Evaluating your ability to use cradle-to-grave analysis in purchasing decisions.",
+    "skillIds": ["os_lca"],
+    "functionId": "proc_supply",
+    "orderIndex": 21
+  },
+  {
+    "id": "q_ps07",
+    "text": "I can write green specifications and tender requirements that embed sustainability performance standards.",
+    "scenarioText": "Assessing your ability to translate sustainability goals into procurement language.",
+    "skillIds": ["os_sustainable_procurement", "os_sustainable_materials"],
+    "functionId": "proc_supply",
+    "orderIndex": 22
+  },
+  {
+    "id": "q_ps08",
+    "text": "I can engage suppliers in sustainability improvement programs and track their progress over time.",
+    "scenarioText": "Evaluating your ability to drive sustainability performance through supplier relationships.",
+    "skillIds": ["os_supplier_assessment", "gp_stakeholder_engagement"],
+    "functionId": "proc_supply",
+    "orderIndex": 23
+  },
+  {
+    "id": "q_ps09",
+    "text": "I can quantify Scope 3 supply chain emissions and identify the highest-impact reduction opportunities.",
+    "scenarioText": "Assessing your understanding of upstream value chain carbon accounting.",
+    "skillIds": ["cc_scopes_basics", "os_supply_chain_mapping"],
+    "functionId": "proc_supply",
+    "orderIndex": 24
+  },
+  {
+    "id": "q_ps10",
+    "text": "I can develop circular procurement strategies that prioritize reuse, remanufacturing, and closed-loop materials.",
+    "scenarioText": "Evaluating your ability to apply circular economy principles to supply chain decisions.",
+    "skillIds": ["cc_circular_principles", "os_sustainable_procurement"],
+    "functionId": "proc_supply",
+    "orderIndex": 25
+  },
+  {
+    "id": "q_fr01",
+    "text": "I can evaluate green finance instruments (green bonds, sustainability-linked loans) and assess their applicability to our organization.",
+    "scenarioText": "Assessing your knowledge of sustainable finance products and their use cases.",
+    "skillIds": ["gp_green_finance"],
+    "functionId": "fin_risk",
+    "orderIndex": 26
+  },
+  {
+    "id": "q_fr02",
+    "text": "I can conduct climate scenario analysis to model the financial impact of physical and transition risks on our portfolio.",
+    "scenarioText": "Evaluating your ability to stress-test financials against climate futures.",
+    "skillIds": ["cc_scenario_analysis", "cc_climate_risk"],
+    "functionId": "fin_risk",
+    "orderIndex": 27
+  },
+  {
+    "id": "q_fr03",
+    "text": "I understand carbon pricing mechanisms (ETS, carbon tax, offsets) and can assess their financial implications for our business.",
+    "scenarioText": "Assessing your ability to navigate carbon markets and pricing exposure.",
+    "skillIds": ["cc_carbon_offsets", "cc_carbon_footprint"],
+    "functionId": "fin_risk",
+    "orderIndex": 28
+  },
+  {
+    "id": "q_fr04",
+    "text": "I can prepare climate-related financial disclosures aligned with TCFD recommendations.",
+    "scenarioText": "Evaluating your competency in climate risk reporting for investors and regulators.",
+    "skillIds": ["gp_tcfd_tnfd", "gp_esg_reporting"],
+    "functionId": "fin_risk",
+    "orderIndex": 29
+  },
+  {
+    "id": "q_fr05",
+    "text": "I understand SEC climate disclosure requirements and can contribute to our organization's compliance efforts.",
+    "scenarioText": "Assessing your awareness of evolving US regulatory disclosure obligations.",
+    "skillIds": ["gp_sec_disclosure"],
+    "functionId": "fin_risk",
+    "orderIndex": 30
+  },
+  {
+    "id": "q_fr06",
+    "text": "I can define and track sustainability KPIs that connect environmental performance to financial outcomes.",
+    "scenarioText": "Evaluating your ability to build the business case for sustainability investments.",
+    "skillIds": ["gp_esg_reporting", "gd_data_visualization"],
+    "functionId": "fin_risk",
+    "orderIndex": 31
+  },
+  {
+    "id": "q_fr07",
+    "text": "I can model climate-related financial risks across different time horizons and incorporate them into enterprise risk management.",
+    "scenarioText": "Assessing your ability to integrate climate risk into corporate risk frameworks.",
+    "skillIds": ["cc_climate_risk", "cc_scenario_analysis"],
+    "functionId": "fin_risk",
+    "orderIndex": 32
+  },
+  {
+    "id": "q_fr08",
+    "text": "I can evaluate ESG factors and integrate them into investment analysis or capital allocation decisions.",
+    "scenarioText": "Evaluating your competency in ESG-integrated financial decision-making.",
+    "skillIds": ["gp_green_finance", "gd_cleantech_investment"],
+    "functionId": "fin_risk",
+    "orderIndex": 33
+  },
+  {
+    "id": "q_fr09",
+    "text": "I can structure and evaluate green bond or sustainability-linked loan frameworks for our organization.",
+    "scenarioText": "Assessing your ability to leverage sustainable finance for capital projects.",
+    "skillIds": ["gp_green_finance", "gp_grant_incentives"],
+    "functionId": "fin_risk",
+    "orderIndex": 34
+  },
+  {
+    "id": "q_fr10",
+    "text": "I can calculate the return on investment for sustainability initiatives and present the business case to senior leadership.",
+    "scenarioText": "Evaluating your ability to quantify the financial value of green investments.",
+    "skillIds": ["gp_green_finance", "gp_esg_reporting"],
+    "functionId": "fin_risk",
+    "orderIndex": 35
+  },
+  {
+    "id": "q_ti01",
+    "text": "I can assess and reduce the environmental footprint of IT operations, including data centers, devices, and cloud services.",
+    "scenarioText": "Assessing your ability to drive sustainability within technology infrastructure.",
+    "skillIds": ["gd_sustainable_it", "gd_green_software"],
+    "functionId": "tech_it",
+    "orderIndex": 36
+  },
+  {
+    "id": "q_ti02",
+    "text": "I can evaluate climate technology solutions and recommend those most relevant to our organization's sustainability goals.",
+    "scenarioText": "Evaluating your ability to identify and assess emerging green technology opportunities.",
+    "skillIds": ["gd_climate_tech", "gd_cleantech_investment"],
+    "functionId": "tech_it",
+    "orderIndex": 37
+  },
+  {
+    "id": "q_ti03",
+    "text": "I can select, implement, or manage ESG data platforms to collect, validate, and report sustainability metrics.",
+    "scenarioText": "Assessing your competency in building the digital backbone for ESG reporting.",
+    "skillIds": ["gd_esg_data_platforms", "gp_esg_reporting"],
+    "functionId": "tech_it",
+    "orderIndex": 38
+  },
+  {
+    "id": "q_ti04",
+    "text": "I can identify opportunities to apply AI and machine learning to sustainability challenges such as energy optimization or emissions forecasting.",
+    "scenarioText": "Evaluating your awareness of AI applications in the sustainability domain.",
+    "skillIds": ["gd_ai_sustainability"],
+    "functionId": "tech_it",
+    "orderIndex": 39
+  },
+  {
+    "id": "q_ti05",
+    "text": "I can apply green software engineering principles to reduce the energy consumption and carbon intensity of applications.",
+    "scenarioText": "Assessing your ability to write and architect software with sustainability in mind.",
+    "skillIds": ["gd_green_software", "gd_sustainable_it"],
+    "functionId": "tech_it",
+    "orderIndex": 40
+  },
+  {
+    "id": "q_ti06",
+    "text": "I can configure or oversee smart building systems (BMS, IoT sensors) to optimize energy, comfort, and resource use.",
+    "scenarioText": "Evaluating your skills in deploying technology for intelligent building management.",
+    "skillIds": ["gd_smart_buildings", "os_energy_management"],
+    "functionId": "tech_it",
+    "orderIndex": 41
+  },
+  {
+    "id": "q_ti07",
+    "text": "I understand how digital twins can model and optimize sustainability performance of physical assets or processes.",
+    "scenarioText": "Assessing your knowledge of virtual modeling for sustainability optimization.",
+    "skillIds": ["gd_digital_twins"],
+    "functionId": "tech_it",
+    "orderIndex": 42
+  },
+  {
+    "id": "q_ti08",
+    "text": "I can design dashboards and data visualizations that make sustainability data actionable for non-technical stakeholders.",
+    "scenarioText": "Evaluating your ability to translate ESG data into clear decision-support visuals.",
+    "skillIds": ["gd_data_visualization", "gd_esg_data_platforms"],
+    "functionId": "tech_it",
+    "orderIndex": 43
+  },
+  {
+    "id": "q_ti09",
+    "text": "I can lead or contribute to innovation management processes that prioritize sustainability outcomes alongside business value.",
+    "scenarioText": "Assessing your ability to drive green innovation within technology teams.",
+    "skillIds": ["gd_innovation_management", "gd_sustainable_biz_models"],
+    "functionId": "tech_it",
+    "orderIndex": 44
+  },
+  {
+    "id": "q_ti10",
+    "text": "I can evaluate blockchain and traceability solutions for supply chain transparency and sustainability verification.",
+    "scenarioText": "Evaluating your understanding of distributed ledger applications for green assurance.",
+    "skillIds": ["gd_blockchain_traceability", "os_supply_chain_mapping"],
+    "functionId": "tech_it",
+    "orderIndex": 45
+  },
+  {
+    "id": "q_ph01",
+    "text": "I can design and lead change management programs that embed sustainability into organizational culture and processes.",
+    "scenarioText": "Assessing your ability to drive organizational transformation around sustainability.",
+    "skillIds": ["gp_change_management"],
+    "functionId": "people_hr",
+    "orderIndex": 46
+  },
+  {
+    "id": "q_ph02",
+    "text": "I understand just transition principles and can apply them to workforce planning as our organization decarbonizes.",
+    "scenarioText": "Evaluating your awareness of equitable approaches to the green economy shift.",
+    "skillIds": ["gp_just_transition"],
+    "functionId": "people_hr",
+    "orderIndex": 47
+  },
+  {
+    "id": "q_ph03",
+    "text": "I can design stakeholder engagement strategies that include employees, communities, and partners in sustainability initiatives.",
+    "scenarioText": "Assessing your ability to build broad coalitions for sustainability goals.",
+    "skillIds": ["gp_stakeholder_engagement", "gp_sustainability_comms"],
+    "functionId": "people_hr",
+    "orderIndex": 48
+  },
+  {
+    "id": "q_ph04",
+    "text": "I can develop and deliver sustainability training programs tailored to different roles and skill levels across the organization.",
+    "scenarioText": "Evaluating your competency in building green skills capacity at scale.",
+    "skillIds": ["gp_change_management", "gp_sustainability_comms"],
+    "functionId": "people_hr",
+    "orderIndex": 49
+  },
+  {
+    "id": "q_ph05",
+    "text": "I can integrate sustainability competencies into recruitment criteria and talent acquisition processes.",
+    "scenarioText": "Assessing your ability to attract talent with the green skills our organization needs.",
+    "skillIds": ["gp_change_management", "gp_just_transition"],
+    "functionId": "people_hr",
+    "orderIndex": 50
+  },
+  {
+    "id": "q_ph06",
+    "text": "I can design employee engagement initiatives that connect individual roles to the organization's sustainability mission.",
+    "scenarioText": "Evaluating your ability to make sustainability personally meaningful for all staff.",
+    "skillIds": ["gp_stakeholder_engagement", "gp_change_management"],
+    "functionId": "people_hr",
+    "orderIndex": 51
+  },
+  {
+    "id": "q_ph07",
+    "text": "I can ensure that diversity, equity, and inclusion considerations are integrated into our green transition strategies.",
+    "scenarioText": "Assessing your ability to link DEI principles with sustainability workforce planning.",
+    "skillIds": ["gp_just_transition", "gp_stakeholder_engagement"],
+    "functionId": "people_hr",
+    "orderIndex": 52
+  },
+  {
+    "id": "q_ph08",
+    "text": "I can foster a sustainability-oriented culture through leadership development, recognition programs, and behavioral nudges.",
+    "scenarioText": "Evaluating your ability to shift organizational norms toward sustainable practices.",
+    "skillIds": ["gp_change_management", "gp_sustainability_comms"],
+    "functionId": "people_hr",
+    "orderIndex": 53
+  },
+  {
+    "id": "q_ph09",
+    "text": "I can conduct a green skills gap analysis and develop a workforce plan to build the sustainability capabilities we need.",
+    "scenarioText": "Assessing your strategic workforce planning skills for the sustainability transition.",
+    "skillIds": ["gp_change_management", "gp_just_transition"],
+    "functionId": "people_hr",
+    "orderIndex": 54
+  },
+  {
+    "id": "q_ph10",
+    "text": "I can craft internal communications that build awareness, urgency, and buy-in for sustainability commitments across all levels.",
+    "scenarioText": "Evaluating your ability to communicate the sustainability narrative inside the organization.",
+    "skillIds": ["gp_sustainability_comms", "gp_stakeholder_engagement"],
+    "functionId": "people_hr",
+    "orderIndex": 55
+  },
+  {
+    "id": "q_lc01",
+    "text": "I understand the CSRD and EU Taxonomy requirements and can assess our organization's reporting obligations under them.",
+    "scenarioText": "Assessing your knowledge of European sustainability disclosure regulations.",
+    "skillIds": ["gp_csrd_taxonomy", "gp_esg_reporting"],
+    "functionId": "legal_comp",
+    "orderIndex": 56
+  },
+  {
+    "id": "q_lc02",
+    "text": "I can interpret SEC climate disclosure rules and advise on our organization's compliance readiness.",
+    "scenarioText": "Evaluating your familiarity with US securities-based climate reporting requirements.",
+    "skillIds": ["gp_sec_disclosure"],
+    "functionId": "legal_comp",
+    "orderIndex": 57
+  },
+  {
+    "id": "q_lc03",
+    "text": "I can identify and assess environmental legal risks, including liability exposure from pollution, land use, and hazardous materials.",
+    "scenarioText": "Assessing your ability to evaluate legal risk from environmental operations.",
+    "skillIds": ["gp_legal_risk", "os_ehs"],
+    "functionId": "legal_comp",
+    "orderIndex": 58
+  },
+  {
+    "id": "q_lc04",
+    "text": "I can plan and execute compliance audits that verify adherence to environmental regulations and voluntary sustainability commitments.",
+    "scenarioText": "Evaluating your competency in structured environmental compliance verification.",
+    "skillIds": ["gp_compliance_audit"],
+    "functionId": "legal_comp",
+    "orderIndex": 59
+  },
+  {
+    "id": "q_lc05",
+    "text": "I can advise on board governance structures and practices needed to provide effective oversight of ESG risks and strategy.",
+    "scenarioText": "Assessing your understanding of corporate governance for sustainability accountability.",
+    "skillIds": ["gp_board_governance", "gp_esg_reporting"],
+    "functionId": "legal_comp",
+    "orderIndex": 60
+  },
+  {
+    "id": "q_lc06",
+    "text": "I can evaluate the assurance and verification requirements for ESG reports and coordinate with external auditors.",
+    "scenarioText": "Evaluating your ability to ensure credibility and accuracy in sustainability disclosures.",
+    "skillIds": ["gp_compliance_audit", "gp_esg_reporting"],
+    "functionId": "legal_comp",
+    "orderIndex": 61
+  },
+  {
+    "id": "q_lc07",
+    "text": "I can assess whether environmental marketing claims meet legal standards and are substantiated by evidence.",
+    "scenarioText": "Assessing your ability to prevent greenwashing liability in corporate communications.",
+    "skillIds": ["gp_legal_risk", "gp_sustainability_comms"],
+    "functionId": "legal_comp",
+    "orderIndex": 62
+  },
+  {
+    "id": "q_lc08",
+    "text": "I understand carbon market regulations (ETS, voluntary markets) and can advise on compliance and trading obligations.",
+    "scenarioText": "Evaluating your knowledge of the legal framework governing carbon credits and allowances.",
+    "skillIds": ["gp_legal_risk", "cc_carbon_offsets"],
+    "functionId": "legal_comp",
+    "orderIndex": 63
+  },
+  {
+    "id": "q_lc09",
+    "text": "I can navigate environmental permitting processes and ensure our operations maintain required authorizations.",
+    "scenarioText": "Assessing your ability to manage the regulatory permit lifecycle for environmental operations.",
+    "skillIds": ["gp_compliance_audit", "gp_legal_risk"],
+    "functionId": "legal_comp",
+    "orderIndex": 64
+  },
+  {
+    "id": "q_lc10",
+    "text": "I can assess our organization's exposure to climate-related litigation risk and recommend mitigation strategies.",
+    "scenarioText": "Evaluating your awareness of emerging climate litigation trends and corporate vulnerability.",
+    "skillIds": ["gp_legal_risk", "cc_climate_risk"],
+    "functionId": "legal_comp",
+    "orderIndex": 65
+  },
+  {
+    "id": "q_sm01",
+    "text": "I can develop green marketing strategies that authentically communicate our sustainability performance and commitments.",
+    "scenarioText": "Assessing your ability to market sustainability credibly to customers and prospects.",
+    "skillIds": ["gp_green_marketing", "gp_sustainability_comms"],
+    "functionId": "sales_mktg",
+    "orderIndex": 66
+  },
+  {
+    "id": "q_sm02",
+    "text": "I can craft sustainability messaging that resonates with target audiences while remaining accurate and substantiated.",
+    "scenarioText": "Evaluating your skill in translating sustainability data into compelling narratives.",
+    "skillIds": ["gp_sustainability_comms", "gp_green_marketing"],
+    "functionId": "sales_mktg",
+    "orderIndex": 67
+  },
+  {
+    "id": "q_sm03",
+    "text": "I can position products or services based on their verified environmental benefits in a competitive marketplace.",
+    "scenarioText": "Assessing your ability to differentiate offerings through substantiated sustainability attributes.",
+    "skillIds": ["gd_green_product_design", "gp_green_marketing"],
+    "functionId": "sales_mktg",
+    "orderIndex": 68
+  },
+  {
+    "id": "q_sm04",
+    "text": "I can engage external stakeholders (customers, partners, media) in sustainability dialogue and co-creation.",
+    "scenarioText": "Evaluating your ability to build external relationships around shared sustainability goals.",
+    "skillIds": ["gp_stakeholder_engagement", "gp_sustainability_comms"],
+    "functionId": "sales_mktg",
+    "orderIndex": 69
+  },
+  {
+    "id": "q_sm05",
+    "text": "I can develop a brand sustainability strategy that aligns marketing with corporate ESG commitments and targets.",
+    "scenarioText": "Assessing your ability to integrate sustainability into brand identity and positioning.",
+    "skillIds": ["gp_green_marketing", "gd_sustainable_biz_models"],
+    "functionId": "sales_mktg",
+    "orderIndex": 70
+  },
+  {
+    "id": "q_sm06",
+    "text": "I can identify and avoid greenwashing risks in marketing materials, ensuring all claims are defensible and evidence-based.",
+    "scenarioText": "Evaluating your ability to protect brand reputation through honest sustainability communication.",
+    "skillIds": ["gp_green_marketing", "gp_legal_risk"],
+    "functionId": "sales_mktg",
+    "orderIndex": 71
+  },
+  {
+    "id": "q_sm07",
+    "text": "I can conduct market analysis to identify customer demand for sustainable products and quantify the green market opportunity.",
+    "scenarioText": "Assessing your ability to size and segment the sustainability-conscious market.",
+    "skillIds": ["gp_green_marketing", "gd_sustainable_biz_models"],
+    "functionId": "sales_mktg",
+    "orderIndex": 72
+  },
+  {
+    "id": "q_sm08",
+    "text": "I can create sustainability storytelling content that connects data-driven impact to human outcomes and organizational purpose.",
+    "scenarioText": "Evaluating your ability to make sustainability performance emotionally engaging and memorable.",
+    "skillIds": ["gp_sustainability_comms", "gd_data_visualization"],
+    "functionId": "sales_mktg",
+    "orderIndex": 73
+  },
+  {
+    "id": "q_sm09",
+    "text": "I can benchmark our sustainability positioning against competitors and identify differentiation opportunities.",
+    "scenarioText": "Assessing your ability to leverage sustainability as a competitive advantage in the market.",
+    "skillIds": ["gp_green_marketing", "gp_stakeholder_engagement"],
+    "functionId": "sales_mktg",
+    "orderIndex": 74
+  },
+  {
+    "id": "q_sm10",
+    "text": "I can substantiate green product claims with evidence from certifications, LCA data, or third-party verification.",
+    "scenarioText": "Evaluating your ability to back marketing claims with credible sustainability evidence.",
+    "skillIds": ["gp_green_marketing", "os_lca"],
+    "functionId": "sales_mktg",
+    "orderIndex": 75
+  }
+]

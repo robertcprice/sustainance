@@ -1,0 +1,325 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String    @id @default(cuid())
+  firebaseUid String?   @unique
+  email       String    @unique
+  name        String?
+  photoUrl    String?
+  role        String    @default("Owner")  // Owner, Admin, Manager, Employee
+  createdAt   DateTime  @default(now())
+  companies   Company[]
+  memberships CompanyMember[]
+  createdInvites InviteCode[] @relation("InviteCreator")
+  redeemedInvites InviteCode[] @relation("InviteRedeemer")
+  conductedAssessments EmployeeSkillAssessment[]
+  employeeProfiles     Employee[]
+}
+
+model Company {
+  id           String   @id @default(cuid())
+  name         String
+  industry     String
+  size         String
+  state        String
+  userId       String?
+  logoUrl      String?
+  primaryColor String?
+  isPublic     Boolean  @default(false)
+  description  String?
+  createdAt    DateTime @default(now())
+  user         User?    @relation(fields: [userId], references: [id])
+  roles       Role[]
+  departments Department[]
+  employees   Employee[]
+  members     CompanyMember[]
+  inviteCodes InviteCode[]
+  employeeAssessments EmployeeSkillAssessment[]
+  employeeXP  EmployeeXP[]
+  departmentScores DepartmentScore[]
+  campaigns   Campaign[]
+}
+
+model SkillFamily {
+  id          String  @id
+  name        String
+  description String
+  color       String
+  skills      Skill[]
+}
+
+model Skill {
+  id          String    @id
+  familyId    String
+  name        String
+  description String
+  tags        String
+  family      SkillFamily @relation(fields: [familyId], references: [id])
+  roleRequirements RoleSkillRequirement[]
+  questionMaps     QuestionSkillMap[]
+}
+
+model BusinessFunction {
+  id        String     @id
+  name      String
+  roles     Role[]
+  questions Question[]
+}
+
+model Role {
+  id            String   @id @default(cuid())
+  title         String
+  companyId     String
+  functionId    String
+  departmentId  String?
+  createdAt     DateTime @default(now())
+  company       Company  @relation(fields: [companyId], references: [id])
+  function      BusinessFunction @relation(fields: [functionId], references: [id])
+  department    Department? @relation(fields: [departmentId], references: [id])
+  skillRequirements RoleSkillRequirement[]
+  assessments       Assessment[]
+  employees         Employee[]
+}
+
+model RoleSkillRequirement {
+  id            String @id @default(cuid())
+  roleId        String
+  skillId       String
+  requiredLevel Int
+  weight        Int
+  role          Role   @relation(fields: [roleId], references: [id])
+  skill         Skill  @relation(fields: [skillId], references: [id])
+
+  @@unique([roleId, skillId])
+}
+
+model Question {
+  id           String            @id
+  text         String
+  scenarioText String
+  functionId   String?
+  orderIndex   Int
+  function     BusinessFunction? @relation(fields: [functionId], references: [id])
+  skillMaps    QuestionSkillMap[]
+  answers      AssessmentAnswer[]
+}
+
+model QuestionSkillMap {
+  id         String @id @default(cuid())
+  questionId String
+  skillId    String
+  question   Question @relation(fields: [questionId], references: [id])
+  skill      Skill    @relation(fields: [skillId], references: [id])
+
+  @@unique([questionId, skillId])
+}
+
+model Assessment {
+  id          String   @id @default(cuid())
+  roleId      String
+  status      String   @default("in_progress")
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+  role        Role     @relation(fields: [roleId], references: [id])
+  answers     AssessmentAnswer[]
+}
+
+model AssessmentAnswer {
+  id           String @id @default(cuid())
+  assessmentId String
+  questionId   String
+  score        Int
+  assessment   Assessment @relation(fields: [assessmentId], references: [id])
+  question     Question   @relation(fields: [questionId], references: [id])
+
+  @@unique([assessmentId, questionId])
+}
+
+model IncentiveProgram {
+  id                String @id
+  name              String
+  type              String
+  description       String
+  estimatedValue    String
+  eligibleIndustries String
+  eligibleStates    String
+  eligibleFamilies  String
+  url               String
+  agency            String
+  deadlineInfo      String
+}
+
+model RoiMultiplier {
+  id             String @id
+  industry       String
+  severity       String
+  riskType       String
+  annualCostLow  Int
+  annualCostHigh Int
+  description    String
+}
+
+model Department {
+  id        String   @id @default(cuid())
+  companyId String
+  name      String
+  createdAt DateTime @default(now())
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  roles     Role[]
+  employees Employee[]
+  scores    DepartmentScore[]
+}
+
+model Employee {
+  id            String    @id @default(cuid())
+  companyId     String
+  departmentId  String
+  roleId        String
+  userId        String?
+  name          String
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  deactivatedAt DateTime?
+  company       Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  department    Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  role          Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  user          User?      @relation(fields: [userId], references: [id])
+  assessments   EmployeeSkillAssessment[]
+  xp            EmployeeXP[]
+
+  @@unique([companyId, userId])
+}
+
+model EmployeeSkillAssessment {
+  id             String   @id @default(cuid())
+  companyId      String
+  employeeId     String
+  skillId        String
+  currentLevel   Int
+  assessmentDate DateTime @default(now())
+  conductedBy    String
+  createdAt      DateTime @default(now())
+  company        Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  employee       Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  conductor      User     @relation(fields: [conductedBy], references: [id])
+
+  @@unique([employeeId, skillId])
+}
+
+model EmployeeXP {
+  id          String   @id @default(cuid())
+  companyId   String
+  employeeId  String
+  xpTotal     Int      @default(0)
+  lastUpdated DateTime @default(now())
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  employee    Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, employeeId])
+}
+
+model DepartmentScore {
+  id           String   @id @default(cuid())
+  companyId    String
+  departmentId String
+  score        Int      @default(0)
+  lastUpdated  DateTime @default(now())
+  company      Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, departmentId])
+}
+
+model CompanyMember {
+  id        String   @id @default(cuid())
+  userId    String
+  companyId String
+  role      String   @default("Member")
+  joinedAt  DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, companyId])
+}
+
+model InviteCode {
+  id        String    @id @default(cuid())
+  code      String    @unique
+  companyId String
+  createdBy String
+  expiresAt DateTime
+  usedBy    String?
+  usedAt    DateTime?
+  company   Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  creator   User      @relation("InviteCreator", fields: [createdBy], references: [id])
+  redeemer  User?     @relation("InviteRedeemer", fields: [usedBy], references: [id])
+}
+
+// ─── Community / Explore Models ──────────────────────
+
+model CommunityCompany {
+  id          String  @id @default(cuid())
+  rank        Int
+  name        String
+  industry    String
+  region      String
+  score       Float
+  scoreChange Float   @default(0)
+  logo        String
+  employees   String
+  highlights  String  // JSON array stored as string
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CommunityRegion {
+  id         String @id @default(cuid())
+  name       String @unique
+  score      Float
+  topCompany String
+  companyCount Int
+}
+
+model CommunityAchievement {
+  id        String @id @default(cuid())
+  company   String
+  logo      String
+  text      String
+  date      String
+  type      String  // milestone, certification, reporting, product
+  impact    String
+  createdAt DateTime @default(now())
+}
+
+model CommunityGlobalStats {
+  id              String @id @default("global")
+  globalScore     Float
+  scoreChange     Float
+  totalCompanies  Int
+  totalAssessments Int
+  avgReadiness    Float
+  topIndustryScore Float
+  updatedAt       DateTime @updatedAt
+}
+
+model Campaign {
+  id              String   @id @default(cuid())
+  name            String
+  creatorCompanyId String
+  greenFilter     String   @default("all")
+  includeInternal Boolean  @default(false)
+  message         String?
+  status          String   @default("draft") // draft, launched, completed
+  invitedCompanyIds String // JSON array stored as string
+  createdAt       DateTime @default(now())
+  launchedAt      DateTime?
+  company         Company  @relation(fields: [creatorCompanyId], references: [id])
+}
+

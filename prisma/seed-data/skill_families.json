@@ -1,0 +1,26 @@
+[
+  {
+    "id": "climate_carbon",
+    "name": "Climate & Carbon",
+    "description": "Understanding of climate science, carbon accounting, emissions measurement, and climate risk assessment",
+    "color": "#059669"
+  },
+  {
+    "id": "ops_supply",
+    "name": "Operations & Supply Chain",
+    "description": "Ability to integrate sustainability into operations, facilities, procurement, and supply chain management",
+    "color": "#0891B2"
+  },
+  {
+    "id": "green_digital",
+    "name": "Green Digital & Innovation",
+    "description": "Capability to leverage technology for sustainability, evaluate climate tech, and drive green innovation",
+    "color": "#7C3AED"
+  },
+  {
+    "id": "gov_people_commercial",
+    "name": "Governance, People & Commercial",
+    "description": "Skills in ESG reporting, regulatory compliance, change management, stakeholder engagement, and green marketing",
+    "color": "#DC2626"
+  }
+]

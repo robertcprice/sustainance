@@ -1,0 +1,32 @@
+[
+  {
+    "id": "tmpl_ai_ml_engineer",
+    "name": "AI/ML Engineer",
+    "suggestedFunction": "tech_it",
+    "addOnRequirements": [
+      { "skillId": "gd_ai_sustainability", "requiredLevel": 4, "weight": 3 },
+      { "skillId": "gd_green_software", "requiredLevel": 3, "weight": 2 },
+      { "skillId": "gd_data_visualization", "requiredLevel": 3, "weight": 2 }
+    ]
+  },
+  {
+    "id": "tmpl_procurement_specialist",
+    "name": "Procurement Specialist",
+    "suggestedFunction": "proc_supply",
+    "addOnRequirements": [
+      { "skillId": "os_sustainable_materials", "requiredLevel": 4, "weight": 3 },
+      { "skillId": "os_lca", "requiredLevel": 3, "weight": 2 },
+      { "skillId": "gd_blockchain_traceability", "requiredLevel": 2, "weight": 1 }
+    ]
+  },
+  {
+    "id": "tmpl_marketing_manager",
+    "name": "Marketing Manager",
+    "suggestedFunction": "sales_mktg",
+    "addOnRequirements": [
+      { "skillId": "gp_green_marketing", "requiredLevel": 4, "weight": 3 },
+      { "skillId": "gd_sustainable_biz_models", "requiredLevel": 3, "weight": 2 },
+      { "skillId": "gp_sustainability_comms", "requiredLevel": 4, "weight": 3 }
+    ]
+  }
+]

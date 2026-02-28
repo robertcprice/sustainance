@@ -1,0 +1,9 @@
+[
+  { "id": "ops_facilities", "name": "Operations & Facilities" },
+  { "id": "proc_supply", "name": "Procurement & Supply Chain" },
+  { "id": "fin_risk", "name": "Finance & Risk" },
+  { "id": "tech_it", "name": "Technology & IT" },
+  { "id": "people_hr", "name": "People & HR" },
+  { "id": "legal_comp", "name": "Legal & Compliance" },
+  { "id": "sales_mktg", "name": "Sales & Marketing" }
+]
