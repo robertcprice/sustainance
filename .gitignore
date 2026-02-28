@@ -39,6 +39,10 @@ prisma/dev.db-journal
 # vercel
 .vercel
 
+# old builds / archives
+agreed/
+files.zip
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

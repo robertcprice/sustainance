@@ -4,26 +4,16 @@ import path from 'path';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 
-// On Netlify serverless (Lambda), the filesystem is read-only.
-// Copy the pre-seeded SQLite database to /tmp (writable) at runtime.
+// At build time, Prisma resolves "file:./dev.db" relative to schema.prisma → prisma/dev.db
+// At runtime, Prisma Client resolves it relative to CWD → cwd/dev.db (WRONG)
+// Fix: detect the actual database location and set the correct absolute path.
 function ensureDatabase() {
-  if (process.env.NETLIFY && process.env.NODE_ENV === 'production') {
-    const tmpDb = '/tmp/dev.db';
-    if (!fs.existsSync(tmpDb)) {
-      // Look for the bundled database in the function package
-      const candidates = [
-        path.join(process.cwd(), 'prisma', 'dev.db'),
-        path.join(__dirname, '..', '..', 'prisma', 'dev.db'),
-        '/var/task/prisma/dev.db',
-      ];
-      for (const src of candidates) {
-        if (fs.existsSync(src)) {
-          fs.copyFileSync(src, tmpDb);
-          break;
-        }
-      }
-    }
-    process.env.DATABASE_URL = `file:${tmpDb}`;
+  const dbInPrismaDir = path.join(process.cwd(), 'prisma', 'dev.db');
+  const dbInCwd = path.join(process.cwd(), 'dev.db');
+
+  // If the DB exists in prisma/ but NOT in cwd, fix the DATABASE_URL
+  if (fs.existsSync(dbInPrismaDir) && !fs.existsSync(dbInCwd)) {
+    process.env.DATABASE_URL = `file:${dbInPrismaDir}`;
   }
 }
 

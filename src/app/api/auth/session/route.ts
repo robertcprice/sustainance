@@ -14,26 +14,31 @@ export async function POST(request: NextRequest) {
 
   // Demo mode — look up pre-seeded demo user and company (read-only for serverless)
   if (body.demo) {
-    const user = await prisma.user.findUnique({ where: { email: 'demo@sustainance.app' } });
-    if (!user) {
-      return NextResponse.json({ error: 'Demo user not found. Database may need re-seeding.' }, { status: 500 });
+    try {
+      const user = await prisma.user.findUnique({ where: { email: 'demo@sustainance.app' } });
+      if (!user) {
+        return NextResponse.json({ error: 'Demo user not found. Database may need re-seeding.' }, { status: 500 });
+      }
+
+      const membership = await prisma.companyMember.findFirst({
+        where: { userId: user.id },
+        include: { company: true },
+        orderBy: { joinedAt: 'desc' },
+      });
+
+      if (!membership) {
+        return NextResponse.json({ error: 'Demo company not found. Database may need re-seeding.' }, { status: 500 });
+      }
+
+      const cookieStore = await cookies();
+      cookieStore.set(SESSION_COOKIE, user.id, { path: '/', maxAge: 60 * 60 * 24 * 30 });
+      cookieStore.set(LEGACY_COOKIE, membership.companyId, { path: '/', maxAge: 60 * 60 * 24 * 30 });
+
+      return NextResponse.json({ hasCompany: true, userId: user.id });
+    } catch (err) {
+      console.error('Demo login error:', err);
+      return NextResponse.json({ error: `Demo login failed: ${err}` }, { status: 500 });
     }
-
-    const membership = await prisma.companyMember.findFirst({
-      where: { userId: user.id },
-      include: { company: true },
-      orderBy: { joinedAt: 'desc' },
-    });
-
-    if (!membership) {
-      return NextResponse.json({ error: 'Demo company not found. Database may need re-seeding.' }, { status: 500 });
-    }
-
-    const cookieStore = await cookies();
-    cookieStore.set(SESSION_COOKIE, user.id, { path: '/', maxAge: 60 * 60 * 24 * 30 });
-    cookieStore.set(LEGACY_COOKIE, membership.companyId, { path: '/', maxAge: 60 * 60 * 24 * 30 });
-
-    return NextResponse.json({ hasCompany: true, userId: user.id });
   }
 
   // Google OAuth mode
